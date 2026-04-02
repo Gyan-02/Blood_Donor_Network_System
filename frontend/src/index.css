@@ -1,0 +1,339 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blood-red: #E63946;
+  --color-blood-red-dark: #B71C2A;
+  --color-blood-red-glow: rgba(230, 57, 70, 0.4);
+  --color-medical-blue: #457B9D;
+  --color-medical-blue-light: #5AA5C7;
+  --color-neon-green: #00E676;
+  --color-neon-green-glow: rgba(0, 230, 118, 0.35);
+  --color-amber-warn: #FF9800;
+  --color-amber-glow: rgba(255, 152, 0, 0.3);
+  --color-dark-bg: #0B0E14;
+  --color-dark-surface: #12161F;
+  --color-dark-card: #1A1F2E;
+  --color-dark-elevated: #232A3B;
+  --color-dark-border: #2A3245;
+  --color-dark-text: #E4E8F1;
+  --color-dark-muted: #8892A8;
+  --color-dark-subtle: #5A6478;
+  --color-platinum: #E5E4E2;
+  --color-gold: #FFD700;
+  --color-silver: #C0C0C0;
+  --color-bronze: #CD7F32;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: var(--color-dark-bg);
+  color: var(--color-dark-text);
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* ========================================
+   KEYFRAME ANIMATIONS
+   ======================================== */
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+@keyframes radar-ring {
+  0% { transform: scale(0.5); opacity: 0.8; border-width: 3px; }
+  100% { transform: scale(3.5); opacity: 0; border-width: 1px; }
+}
+
+@keyframes glow-border {
+  0%, 100% { box-shadow: 0 0 15px var(--color-blood-red-glow), inset 0 0 15px rgba(230, 57, 70, 0.05); }
+  50% { box-shadow: 0 0 30px var(--color-blood-red-glow), inset 0 0 30px rgba(230, 57, 70, 0.1); }
+}
+
+@keyframes pulse-button {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px var(--color-blood-red-glow); }
+  50% { transform: scale(1.03); box-shadow: 0 0 40px var(--color-blood-red-glow); }
+}
+
+@keyframes liquid-fill {
+  0% { height: 0%; }
+  100% { height: var(--fill-level); }
+}
+
+@keyframes liquid-wave {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-25%) translateY(-2px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes counter-glow {
+  0%, 100% { text-shadow: 0 0 10px rgba(0, 230, 118, 0.3); }
+  50% { text-shadow: 0 0 25px rgba(0, 230, 118, 0.6); }
+}
+
+@keyframes green-aura {
+  0%, 100% { box-shadow: 0 0 15px var(--color-neon-green-glow); }
+  50% { box-shadow: 0 0 35px var(--color-neon-green-glow), 0 0 60px rgba(0, 230, 118, 0.15); }
+}
+
+@keyframes amber-glow {
+  0%, 100% { box-shadow: 0 0 10px var(--color-amber-glow); }
+  50% { box-shadow: 0 0 25px var(--color-amber-glow); }
+}
+
+@keyframes neon-pulse {
+  0%, 100% { opacity: 1; text-shadow: 0 0 8px var(--color-neon-green), 0 0 20px var(--color-neon-green); }
+  50% { opacity: 0.8; text-shadow: 0 0 4px var(--color-neon-green), 0 0 10px var(--color-neon-green); }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ========================================
+   ANIMATION UTILITY CLASSES
+   ======================================== */
+
+.animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+.animate-radar { animation: radar-ring 2s ease-out infinite; }
+.animate-glow-border { animation: glow-border 2s ease-in-out infinite; }
+.animate-pulse-button { animation: pulse-button 1.5s ease-in-out infinite; }
+.animate-fade-in { animation: fade-in-up 0.6s ease-out forwards; }
+.animate-counter-glow { animation: counter-glow 2s ease-in-out infinite; }
+.animate-green-aura { animation: green-aura 2.5s ease-in-out infinite; }
+.animate-amber-glow { animation: amber-glow 2s ease-in-out infinite; }
+.animate-neon-pulse { animation: neon-pulse 1.5s ease-in-out infinite; }
+.animate-slide-right { animation: slide-in-right 0.4s ease-out; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.liquid-fill {
+  animation: liquid-fill 1.5s ease-out forwards;
+}
+
+.liquid-wave::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -50%;
+  width: 200%;
+  height: 10px;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+  animation: liquid-wave 3s ease-in-out infinite;
+}
+
+/* ========================================
+   LEAFLET DARK MODE OVERRIDES
+   ======================================== */
+
+.leaflet-container {
+  background: var(--color-dark-surface) !important;
+  border-radius: 12px;
+}
+
+.leaflet-control-zoom a {
+  background: var(--color-dark-card) !important;
+  color: var(--color-dark-text) !important;
+  border-color: var(--color-dark-border) !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(18, 22, 31, 0.85) !important;
+  color: var(--color-dark-muted) !important;
+  font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--color-medical-blue) !important;
+}
+
+/* Pulsing map markers */
+.map-marker-donor {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-blood-red);
+  border: 2px solid rgba(230, 57, 70, 0.5);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.map-marker-bank {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-medical-blue);
+  border: 2px solid rgba(69, 123, 157, 0.5);
+  box-shadow: 0 0 10px rgba(69, 123, 157, 0.4);
+}
+
+.map-marker-critical {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-blood-red);
+  border: 2px solid var(--color-blood-red);
+  position: relative;
+}
+
+.map-marker-critical::before,
+.map-marker-critical::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid var(--color-blood-red);
+  animation: radar-ring 2s ease-out infinite;
+}
+
+.map-marker-critical::after {
+  animation-delay: 1s;
+}
+
+/* ========================================
+   CUSTOM SCROLLBAR
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-dark-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-dark-subtle);
+}
+
+/* ========================================
+   DRAG AND DROP ZONE
+   ======================================== */
+
+.upload-zone {
+  border: 2px dashed var(--color-dark-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.upload-zone:hover,
+.upload-zone.dragging {
+  border-color: var(--color-medical-blue);
+  background: rgba(69, 123, 157, 0.08);
+}
+
+/* ========================================
+   TEST TUBE VISUALIZATION
+   ======================================== */
+
+.test-tube {
+  width: 60px;
+  height: 180px;
+  border: 2px solid var(--color-dark-border);
+  border-radius: 0 0 30px 30px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(18, 22, 31, 0.6);
+}
+
+.test-tube-cap {
+  width: 80px;
+  height: 14px;
+  background: var(--color-dark-elevated);
+  border-radius: 4px 4px 0 0;
+  margin: 0 auto;
+  position: relative;
+  left: -10px;
+  border: 1px solid var(--color-dark-border);
+}
+
+.test-tube-liquid {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 0 0 28px 28px;
+  transition: height 1.5s ease-out;
+}
+
+.test-tube-liquid.whole-blood { background: linear-gradient(to top, #8B0000, #E63946); }
+.test-tube-liquid.plasma { background: linear-gradient(to top, #D4A017, #FFD700); }
+.test-tube-liquid.platelets { background: linear-gradient(to top, #CC6600, #FF9800); }
+.test-tube-liquid.red-cells { background: linear-gradient(to top, #660000, #B71C2A); }
+
+/* ========================================
+   METALLIC BADGE
+   ======================================== */
+
+.metallic-badge {
+  background: linear-gradient(135deg, #2A3245 0%, #1A1F2E 25%, #3A4560 50%, #1A1F2E 75%, #2A3245 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   SWIPE BUTTON
+   ======================================== */
+
+.swipe-btn {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-dark-elevated);
+  border: 1px solid var(--color-dark-border);
+  border-radius: 50px;
+  padding: 4px;
+  height: 52px;
+}
+
+.swipe-btn-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-neon-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  transition: transform 0.2s;
+  z-index: 10;
+  position: relative;
+}
